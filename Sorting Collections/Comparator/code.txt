@@ -1,0 +1,77 @@
+import java.util.*;
+// using comparator..
+
+class Laptop {
+    String brand;
+    String model;
+    double price;
+    int ramGb;
+    int hddCapacityTb;
+    String processor;
+    String color;
+    
+    
+    public Laptop(String brand, String model, double price, int ramGb, int hddCapacityTb, 
+    String processor,String color ){
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+        this.ramGb = ramGb;
+        this.hddCapacityTb = hddCapacityTb;
+        this.processor= processor;
+        this.color = color;
+    }
+}
+
+class SortByBrand implements Comparator<Laptop> {
+    
+    public int compare(Laptop x , Laptop y){
+        return (x.brand).compareTo(y.brand);
+    }
+    
+}
+
+class SortByRam implements Comparator<Laptop> {
+    
+    public int compare(Laptop x , Laptop y){
+        return x.ramGb -y.ramGb;
+    }
+    
+}
+
+class SortByPrice implements Comparator<Laptop> {
+    
+    public int compare(Laptop x , Laptop y){
+        return (int)(x.price -y.price);
+    }
+    
+}
+public class Test{
+    
+    public static ArrayList<Laptop> ar = new ArrayList<Laptop>();
+    
+    public static void main(String[] args){
+        Laptop l1 = new Laptop("Apple", "MacBook Air", 214000.00, 16, 1, "i7", "Space Grey");
+        Laptop l2 = new Laptop("Toshibha", "T1234", 78000.00, 8, 1, "i5", "Black");
+        Laptop l3 = new Laptop("Dell", "XPS", 80000.00, 6, 1, "i3", "Silver");
+        Laptop l4 = new Laptop("Lenovo", "Thinkpad", 94000.00, 16, 1, "i7", "White");
+        Laptop l5 = new Laptop("MSI", "GL65", 110000.00, 12, 2, "i7", "Jet Black");
+        
+        ar.add(l1);
+        ar.add(l2);
+        ar.add(l3);
+        ar.add(l4);
+        ar.add(l5);
+        
+        Collections.sort(ar, new SortByRam());
+        
+        Iterator<Laptop> itr = ar.iterator();                      
+       
+       while(itr.hasNext()){
+         Laptop t =  itr.next();
+         System.out.println(t.brand +" "+ t.model+" "+t.price+" "+t.ramGb+" "+t.hddCapacityTb+" "+
+         t.processor+ " "+ t.color);
+       }
+        
+    }
+}
